@@ -9,9 +9,14 @@ class CompaniesController < ApplicationController
 	end
 
 	def create
-		@company = Company.create(company_params)
-		flash[:success] = "The company was added to the database"
-		redirect_to companies_path
+		@company = Company.new(company_params)
+		if @company.save
+			flash[:success] = "The company was added to the database"
+			redirect_to companies_path
+		else
+			flash[:warning] = "The company was not added to the database"
+			render 'new'
+		end
 	end
 
 	private 

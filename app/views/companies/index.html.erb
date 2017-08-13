@@ -1,8 +1,5 @@
 <h1>Index of Companies</h1>
 
-<% flash.each do |key, value| %>
-	<%= value %>
-<% end %>
 <% @companies.each do |company| %>
 	<%= company.name %>
 <% end %>
