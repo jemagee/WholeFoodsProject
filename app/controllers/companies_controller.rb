@@ -1,5 +1,7 @@
 class CompaniesController < ApplicationController
 
+	before_action :get_company, only: [:edit, :show, :update]
+
 	def index
 		@companies = Company.all
 	end
@@ -14,8 +16,24 @@ class CompaniesController < ApplicationController
 			flash[:success] = "The company was added to the database"
 			redirect_to companies_path
 		else
-			flash[:warning] = "The company was not added to the database"
+			flash.now[:warning] = "The company was not added to the database"
 			render 'new'
+		end
+	end
+
+	def show
+	end
+
+	def edit
+	end
+
+	def update
+		if @company.update_attributes(company_params)
+			flash[:success] = "The company was updated"
+			redirect_to @company
+		else
+			flash.now[:warning] = "The company was not updated"
+			render 'edit'
 		end
 	end
 
@@ -23,5 +41,9 @@ class CompaniesController < ApplicationController
 
 		def company_params
 			params.require(:company).permit(:name)
+		end
+
+		def get_company
+			@company = Company.find(params[:id])
 		end
 end
