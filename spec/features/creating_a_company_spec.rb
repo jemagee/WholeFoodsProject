@@ -24,7 +24,7 @@ RSpec.feature "Creating A Company" do
 		end
 		within("div.errors") do
 			expect(page).to have_content "Name can't be blank"
-			expect(page).to have_content "2 errors prevented this company from being added to the database"
+			expect(page).to have_content "2 errors prevented this company from being saved"
 		end
 	end
 
