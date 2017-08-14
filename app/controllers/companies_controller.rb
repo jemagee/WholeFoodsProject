@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
 
-	before_action :get_company, only: [:edit, :show, :update]
+	before_action :get_company, only: [:edit, :show, :update, :destroy]
 
 	def index
 		@companies = Company.all
@@ -36,6 +36,13 @@ class CompaniesController < ApplicationController
 			render 'edit'
 		end
 	end
+
+	def destroy
+		@company.destroy
+		flash[:success] = "The company has been deleted"
+		redirect_to companies_path
+	end
+
 
 	private 
 

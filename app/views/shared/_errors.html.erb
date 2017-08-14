@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="errors">
+		<h4 class="error-count alert alert-danger">
+			<%= pluralize(object.errors.count, "error") %> prevented this <%= object.model_name.human.downcase %> from being saved.
+		</h4>
+	<ul class="list-unstyled">
+		<% object.errors.full_messages.each do |msg| %>
+			<li class="text-danger"><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
