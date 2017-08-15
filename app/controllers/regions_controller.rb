@@ -37,6 +37,12 @@ class RegionsController < ApplicationController
 		end
 	end
 
+	def destroy 
+		@region.destroy
+		flash[:success] = "The region was deleted"
+		redirect_to regions_path
+	end
+
 
 	private
 
