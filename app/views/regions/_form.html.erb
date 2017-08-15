@@ -1,0 +1,10 @@
+<% if region.errors.any? %>
+	<%= render "shared/errors", {object: region} %>
+<% end %>
+<%= form_for(region) do |f| %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<%= f.submit "#{action} Region" %>
+<% end %>
