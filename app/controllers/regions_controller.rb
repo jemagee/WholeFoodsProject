@@ -1,5 +1,7 @@
 class RegionsController < ApplicationController
 
+	before_action :get_region, only: [:show, :edit, :update, :destroy]
+
 	def index
 		@regions = Region.all
 	end
@@ -19,10 +21,31 @@ class RegionsController < ApplicationController
 		end
 	end
 
+	def show
+	end
+
+	def edit
+	end
+
+	def update
+		if @region.update_attributes(region_params)
+			flash[:success] = "The region was updated"
+			redirect_to @region
+		else
+			flash.now[:warning] = "The region was not updated"
+			render 'edit'
+		end
+	end
+
+
 	private
 
 		def region_params
 			params.require(:region).permit(:name)
+		end
+
+		def get_region
+			@region = Region.find(params[:id])
 		end
 
 end
