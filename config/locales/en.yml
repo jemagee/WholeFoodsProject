@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      store:
+        name: "Store name"
+        number: "Store number"
+    errors:
+      models:
+        store:
+          attributes:
+            region:
+              invalid: "A store must be associated with a region"
+            number:
+              not_a_number: "must be a number"

@@ -32,4 +32,54 @@ RSpec.feature "Creating a new store" do
 			expect(page).to have_content region3.name
 		end
 	end
-end
+
+	scenario "does not succeed  with a blank name" do
+
+		fill_in "store[number]", with: 12345
+		find("select#store_region_id").select("#{region3.name}")
+		click_button "Add Store"
+
+		within("div.alert-warning") do
+			expect(page).to have_content "The store was not entered"
+		end
+
+		within("div.errors") do
+			expect(page).to have_content "2 errors prevented this store from being saved"
+			expect(page).to have_content "Store name can't be blank"
+		end
+	end
+
+	scenario "does not succeed with a blank store number" do
+
+		fill_in "store[name]", with: "New Store"
+		find("select#store_region_id").select("#{region3.name}")
+		click_button "Add Store"
+
+		within("div.errors") do
+			expect(page).to have_content "Store number can't be blank"
+		end
+	end
+
+	scenario "does not succeed with a non number store number" do
+
+		fill_in "store[name]", with: "New Store"
+		fill_in "store[number]", with: "abcdef"
+		find("select#store_region_id").select("#{region3.name}")
+		click_button "Add Store"
+
+		within("div.errors") do
+			expect(page).to have_content "Store number must be a number"
+		end
+	end
+
+	scenario "does not succeed without a region being selected" do
+
+		fill_in "store[number]", with: 12345
+		fill_in "store[name]", with: "new store name"
+		click_button "Add Store"
+
+		within("div.errors") do
+			expect(page).to have_content "Region must exist"
+		end
+	end
+end	
