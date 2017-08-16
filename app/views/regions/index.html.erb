@@ -1,5 +1,11 @@
-<h1>Regions</h1>
-
-<%= @regions.each do |region| %>
-	<%= link_to region.name, region %>
-<% end %>
+<header class="row">
+	<h1>Regions</h1>
+	<%= link_to fa_icon("create", text: "Add Region"), new_region_path, class: "btn btn-sm btn-success" %>
+</header>
+<div class="row">
+	<ul class="list-unstyled"
+		<% @regions.each do |region| %>
+			<li><%= link_to region.name, region %></li>
+		<% end %>
+	</ul>
+</div>
