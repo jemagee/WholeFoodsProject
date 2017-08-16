@@ -49,6 +49,19 @@ RSpec.feature "Creating a new store" do
 		end
 	end
 
+	scenario "does not succeed with a taken name" do
+
+		Store.create(name: "Existing Store Name", region: region2, number: 54321)
+		fill_in "store[name]", with: "Existing STORE name"
+		fill_in "store[number]", with: 12345
+		find("select#store_region_id").select("#{region3.name}")
+		click_button "Add Store"
+
+		within("div.errors") do
+			expect(page).to have_content "Store name has already been taken"
+		end
+	end
+
 	scenario "does not succeed with a blank store number" do
 
 		fill_in "store[name]", with: "New Store"

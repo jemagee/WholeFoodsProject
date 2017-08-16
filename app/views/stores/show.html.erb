@@ -5,4 +5,5 @@
 	<p id="store_region">Region: <%= @store.region.name %></p>
 	<p id="store_status">Status: <%= @store.status %></p>
 </div>
+<%= link_to fa_icon('edit', text: "Edit Store"), edit_store_path(@store), class: "btn btn-sm btn-primary" %>
 

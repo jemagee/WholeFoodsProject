@@ -1,5 +1,11 @@
 class StoresController < ApplicationController
 
+	before_action :get_store, only: [:edit, :show, :update, :destroy]
+
+	def index
+		@stores = Store.all
+	end
+
 	def new
 		@store = Store.new
 	end
@@ -16,12 +22,24 @@ class StoresController < ApplicationController
 	end
 
 	def show
-		@store = Store.find(params[:id])
+	end
+
+	def edit
+	end
+
+	def update
+		@store.update(store_params)
+		flash[:success] = "The store was updated"
+		redirect_to @store
 	end
 
 	private
 
 		def store_params
 			params.require(:store).permit(:name, :number, :region_id)
+		end
+
+		def get_store
+			@store = Store.find(params[:id])
 		end
 end
