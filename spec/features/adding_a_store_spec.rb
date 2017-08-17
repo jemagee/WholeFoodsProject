@@ -95,4 +95,16 @@ RSpec.feature "Creating a new store" do
 			expect(page).to have_content "Region must exist"
 		end
 	end
+
+	scenario "does not succed with a non integer store number" do
+
+		fill_in "store[number]", with: 1234.456
+		fill_in "store[name]", with: "new store name"
+		find("select#store_region_id").select("#{region3.name}")
+		click_button "Add Store"
+
+		within("div.errors") do
+			expect(page).to have_content "Store number must be an integer"
+		end
+	end
 end	

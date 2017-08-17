@@ -28,4 +28,45 @@ RSpec.feature "Editing a Store" do
 
 		expect(page).to have_content "New Store Name"
 	end
+
+	scenario "fails with a blank name" do
+
+		fill_in "store[name]", with: ""
+		click_button "Update Store"
+
+		within("div.alert-warning") do
+			expect(page).to have_content "The store was not updated"
+		end
+
+		within("div.errors") do
+			expect(page).to have_content "Store name can't be blank"
+		end
+	end
+
+	scenario "fails with a blank store number" do
+		fill_in "store[number]", with: ""
+		click_button "Update Store"
+
+		within("div.errors") do
+			expect(page).to have_content "Store number can't be blank"
+		end
+	end
+
+	scenario "fails with a non-number store number" do
+		fill_in "store[number]", with: "d;lfjasdf;lkjasdf;lkadjf"
+		click_button "Update Store"
+
+		within("div.errors") do
+			expect(page).to have_content "Store number must be a number"
+		end
+	end
+
+	scenario "fails with a non integer number" do
+		fill_in "store[number]", with: 123.456
+		click_button "Update Store"
+
+		within("div.errors") do
+			expect(page).to have_content "Store number must be an integer"
+		end
+	end
 end

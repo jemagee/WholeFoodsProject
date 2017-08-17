@@ -28,9 +28,13 @@ class StoresController < ApplicationController
 	end
 
 	def update
-		@store.update(store_params)
-		flash[:success] = "The store was updated"
-		redirect_to @store
+		if @store.update(store_params)
+			flash[:success] = "The store was updated"
+			redirect_to @store
+		else
+			flash.now[:warning] = "The store was not updated"
+			render 'edit'
+		end
 	end
 
 	private
