@@ -11,13 +11,19 @@ RSpec.feature "deleting a store" do
 
 	scenario "works properly" do
 
-		click_link "Delete Store"
+		click_link "Archive Store"
 
 		within("div.alert-success") do
-			expect(page).to have_content "The store was successfully deleted"
+			expect(page).to have_content "The store was successfully archived"
 		end
 
 		expect(page).to have_link store.name
 		expect(page).to_not have_content store2.name
+		visit store_path(store2)
+
+		within("#store_status") do
+			expect(page).to have_content "Closed"
+		end
+
 	end
 end

@@ -3,7 +3,7 @@ class StoresController < ApplicationController
 	before_action :get_store, only: [:edit, :show, :update, :destroy]
 
 	def index
-		@stores = Store.all
+		@stores = Store.open
 	end
 
 	def new
@@ -38,8 +38,9 @@ class StoresController < ApplicationController
 	end
 
 	def destroy
-		@store.destroy
-		flash[:success] = "The store was successfully deleted"
+		@store.open = false
+		@store.save
+		flash[:success] = "The store was successfully archived"
 		redirect_to stores_path
 	end
 
