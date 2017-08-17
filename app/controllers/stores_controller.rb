@@ -37,6 +37,12 @@ class StoresController < ApplicationController
 		end
 	end
 
+	def destroy
+		@store.destroy
+		flash[:success] = "The store was successfully deleted"
+		redirect_to stores_path
+	end
+
 	private
 
 		def store_params
