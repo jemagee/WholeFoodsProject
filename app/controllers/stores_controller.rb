@@ -38,10 +38,7 @@ class StoresController < ApplicationController
 	end
 
 	def destroy
-		@store.open = false
-		@store.save
-		flash[:success] = "The store was successfully archived"
-		redirect_to stores_path
+		@store.update(open: false)
 	end
 
 	private

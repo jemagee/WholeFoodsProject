@@ -35,7 +35,7 @@ RSpec.feature "Creating a new store" do
 
 	scenario "does not succeed  with a blank name" do
 
-		fill_in "store[number]", with: 12345
+		fill_in "store[number]", with: 45678
 		find("select#store_region_id").select("#{region3.name}")
 		click_button "Add Store"
 
