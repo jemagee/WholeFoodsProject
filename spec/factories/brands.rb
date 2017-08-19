@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :brand do
-    name "MyText"
-    number ""
-    company nil
+    sequence(:name) {|n| "Brand#{n}"}
+    sequence(:prefix) {|n| 99999 + n}
   end
 end

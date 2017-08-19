@@ -1,3 +1,7 @@
+<% if brand.errors.any? %>
+	<%= render 'shared/errors', {object: brand} %>
+<% end %>
+
 <%= form_for brand do |f| %>
 
 	<%= f.label :name %>
