@@ -2,3 +2,12 @@
 
 <%= link_to fa_icon('edit', text: "Edit Company"), edit_company_path(@company), class: "btn btn-primary" %>
 <%= link_to fa_icon('trash', text: "Delete Company"), company_path(@company), method: :delete, data: {confirm: "Are you sure you want to delete this company?"}, class: "btn btn-danger" %>
+
+<% if @company.brands.any? %>
+	<h3><%= @company.name%> Brands</h3>
+	<div id="brands">
+		<% @company.brands.each do |brand| %>
+			<p><%= brand.name %></p>
+		<% end %>
+	</div>
+<% end %>
