@@ -33,6 +33,12 @@ class BrandsController < ApplicationController
 		end
 	end
 
+	def destroy 
+		@brand.update(active: false)
+		flash[:success] = "The brand was archived"
+		redirect_to company_path(@brand.company)
+	end
+
 	private
 
 		def brand_params

@@ -1,3 +1,4 @@
 <%= @brand.name %>
 
 <%= link_to fa_icon('edit', text: "Edit Brand"), edit_brand_path(@brand), class: "btn btn-sm btn-primary" %>
+<%= link_to fa_icon('archive', text: "Archive Brand"), brand_path(@brand), method: :delete %>
