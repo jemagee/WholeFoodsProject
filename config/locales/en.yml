@@ -37,4 +37,5 @@ en:
           attributes:
             prefix:
               inclusion: "must consist of six (only six) integers"
+              not_a_number: "must be a number"
               

@@ -7,7 +7,7 @@
 	<h3><%= @company.name%> Brands</h3>
 	<div id="brands">
 		<% @company.brands.each do |brand| %>
-			<p><%= brand.name %></p>
+			<p><%= link_to brand.name, brand_path(brand) %></p>
 		<% end %>
 	</div>
 <% end %>
