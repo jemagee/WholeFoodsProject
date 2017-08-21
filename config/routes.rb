@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   resources :companies
   resources :regions
   resources :stores
-  resources :brands
+  resources :brands do
+  	resources :items
+  end
 end

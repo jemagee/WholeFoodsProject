@@ -2,3 +2,13 @@
 
 <%= link_to fa_icon('edit', text: "Edit Brand"), edit_brand_path(@brand), class: "btn btn-sm btn-primary" %>
 <%= link_to fa_icon('archive', text: "Archive Brand"), brand_path(@brand), method: :delete %>
+<%= link_to fa_icon('create', text: "Add Item to Brand"), new_brand_item_path(@brand), class: "btn btn-sm btn-success" %> 
+
+<%if @brand.items.any? %>
+	<div id="items">
+		<h4>Items associated with <%= @brand.name %></h4>
+		<% @brand.items.each do |item| %>
+			<%= item.name %>
+		<% end %>
+	</div>
+<% end %>

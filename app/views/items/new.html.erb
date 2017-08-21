@@ -1,0 +1,10 @@
+<%= form_for([@brand, @item]) do |f| %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<%= f.label :number %>
+	<%= f.number_field :number %>
+
+	<%= f.submit "Add Item" %>
+<% end %>
