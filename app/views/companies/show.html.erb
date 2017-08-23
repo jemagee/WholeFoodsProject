@@ -1,3 +1,6 @@
+<% if @company.errors.any? %>
+	<%= render 'shared/errors', object: @company %>
+<% end %>
 <h1><%= @company.name %></h1>
 
 <%= link_to fa_icon('edit', text: "Edit Company"), edit_company_path(@company), class: "btn btn-primary" %>
@@ -7,13 +10,13 @@
 	<h3><%= @company.name%> Brands</h3>
 	<div id="brands">
 		<% @company.brands.each do |brand| %>
-			<% if brand.active %>
+			<% if brand.active && !brand.id.nil? %>
 				<p><%= link_to brand.name, brand_path(brand) %></p>
 			<% end %>
 		<% end %>
 	</div>
 <% end %>
-<%= form_for(@company) do |f| %>
+<%= form_for @company, url: {action: "addbrand"} do |f| %>
 
 	<%= f.fields_for :brands, @company.brands.build do |ff| %>
 

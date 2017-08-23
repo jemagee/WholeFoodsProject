@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
 
-	before_action :get_company, only: [:edit, :show, :update, :destroy]
+	before_action :get_company, only: [:edit, :show, :update, :destroy, :addbrand]
 
 	def index
 		@companies = Company.all
@@ -27,6 +27,15 @@ class CompaniesController < ApplicationController
 	def edit
 	end
 
+	def addbrand
+		if @company.update_attributes(company_params)
+			flash[:success] = "The brand was added to the company"
+			redirect_to @company
+		else
+			flash[:warning] = "The brand was not added to the company"
+			render template: 'companies/show'
+		end
+	end
 	def update
 		if @company.update_attributes(company_params)
 			flash[:success] = "The company was updated"
