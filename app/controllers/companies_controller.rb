@@ -47,7 +47,7 @@ class CompaniesController < ApplicationController
 	private 
 
 		def company_params
-			params.require(:company).permit(:name)
+			params.require(:company).permit(:name, brands_attributes: [:id, :name, :prefix])
 		end
 
 		def get_company

@@ -13,3 +13,17 @@
 		<% end %>
 	</div>
 <% end %>
+<%= form_for(@company) do |f| %>
+
+	<%= f.fields_for :brands, @company.brands.build do |ff| %>
+
+		<%= ff.label :name %>
+		<%= ff.text_field :name %>
+
+		<%= ff.label :prefix %>
+		<%= ff.number_field :prefix %>
+
+	<% end %>
+
+	<%= f.submit "Add Brand" %>
+<% end %>
